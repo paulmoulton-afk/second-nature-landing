@@ -1,1 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Second Nature by Terevia — Built for business. Supporting UK conservation.</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--forest:#1a3a2a;--moss:#2d5a3f;--sage:#7a9e7e;--meadow:#a8c5a0;--cream:#f5f0e8;--warm-white:#faf8f4;--ocean:#1a4a5a;--sea:#4a8c9c;--gold:#c4a35a;--earth:#8b6f4e;--text:#2a2a28;--text-light:#5a5a56}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--warm-white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
+.hdr{background:rgba(26,58,42,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:1000;border-bottom:1px solid rgba(255,255,255,.04)}
+.hdr-brand{font-family:'DM Serif Display',serif;font-size:1.05rem;color:var(--cream);text-decoration:none;letter-spacing:-.01em}
+.hdr-brand em{font-style:italic;color:var(--meadow)}
+.hdr-nav{display:flex;gap:24px;align-items:center}
+.hdr-link{font-size:.78rem;color:rgba(255,255,255,.35);text-decoration:none;font-weight:400;transition:color .4s}
+.hdr-link:hover{color:#fff}
+.hdr-cta{font-size:.74rem;font-weight:600;color:var(--forest);background:var(--cream);padding:8px 18px;border-radius:100px;text-decoration:none;transition:all .4s}
+.hdr-cta:hover{background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.15)}
+
+/* HERO */
+.hero{min-height:100vh;background:var(--forest);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 24px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;bottom:0;left:0;right:0;height:55%;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNDAwIDQwMCI+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImJza3kiIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYzRkNGIwIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjN2E5ZTdlIi8+PC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iMTQwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9InVybCgjYnNreSkiLz4KPGVsbGlwc2UgY3g9IjIwMCIgY3k9IjEwMCIgcng9IjgwIiByeT0iODAiIGZpbGw9IiNmNWYwZTgiIG9wYWNpdHk9IjAuMDgiLz4KPCEtLSByb2xsaW5nIGhpbGxzIGxheWVycyAtLT4KPGVsbGlwc2UgY3g9IjQwMCIgY3k9IjI1MCIgcng9IjUwMCIgcnk9IjEwMCIgZmlsbD0iIzVhOGE1ZSIgb3BhY2l0eT0iMC41Ii8+CjxlbGxpcHNlIGN4PSI5MDAiIGN5PSIyNjAiIHJ4PSI2MDAiIHJ5PSI5MCIgZmlsbD0iIzRhN2E0ZSIgb3BhY2l0eT0iMC42Ii8+CjxlbGxpcHNlIGN4PSIyMDAiIGN5PSIyODAiIHJ4PSI0MDAiIHJ5PSI3MCIgZmlsbD0iIzNkNmI0ZiIgb3BhY2l0eT0iMC43Ii8+CjxlbGxpcHNlIGN4PSI3MDAiIGN5PSIyOTAiIHJ4PSI4MDAiIHJ5PSI4MCIgZmlsbD0iIzJkNWEzZiIvPgo8cmVjdCB5PSIzMDAiIHdpZHRoPSIxNDAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzFhM2EyYSIvPgo8IS0tIHBhdGNod29yayBmaWVsZHMgc3VnZ2VzdGlvbiAtLT4KPHBhdGggZD0iTTAsMzIwIFEyMDAsMzAwIDQwMCwzMjAgUTYwMCwzNDAgODAwLDMxNSBRMTAwMCwyOTAgMTIwMCwzMTAgUTEzMDAsMzIwIDE0MDAsMzEwIEwxNDAwLDQwMCBMMCw0MDBaIiBmaWxsPSIjMWEzYTJhIi8+CjwhLS0gc2NhdHRlcmVkIHRyZWVzIC0tPgo8ZyBmaWxsPSIjMWEzYTJhIiBvcGFjaXR5PSIwLjUiPgo8ZWxsaXBzZSBjeD0iMTgwIiBjeT0iMjYwIiByeD0iMTUiIHJ5PSIyNSIvPgo8ZWxsaXBzZSBjeD0iNTAwIiBjeT0iMjU1IiByeD0iMTgiIHJ5PSIzMCIvPgo8ZWxsaXBzZSBjeD0iODIwIiBjeT0iMjUwIiByeD0iMTQiIHJ5PSIyNCIvPgo8ZWxsaXBzZSBjeD0iMTEwMCIgY3k9IjI1OCIgcng9IjE2IiByeT0iMjgiLz4KPC9nPgo8IS0tIGJpcmRzIC0tPgo8ZyBzdHJva2U9IiNmNWYwZTgiIHN0cm9rZS13aWR0aD0iMS41IiBmaWxsPSJub25lIiBvcGFjaXR5PSIwLjMiPgo8cGF0aCBkPSJNNjAwLDgwIFE2MDUsNzUgNjEwLDgwIFE2MTUsNzUgNjIwLDgwIi8+CjxwYXRoIGQ9Ik02NTAsNzAgUTY1NCw2NiA2NTgsNzAgUTY2Miw2NiA2NjYsNzAiLz4KPHBhdGggZD0iTTU4MCw5MCBRNTgzLDg3IDU4Niw5MCBRNTg5LDg3IDU5Miw5MCIvPgo8L2c+Cjwvc3ZnPg==');background-size:cover;background-position:top center;opacity:.18;mask-image:linear-gradient(to bottom,transparent 0%,black 40%);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 40%)}
+.hero-glow{position:absolute;top:20%;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(168,197,160,.06) 0%,transparent 70%);pointer-events:none}
+.hero-content{position:relative;z-index:2;max-width:580px}
+.hero-label{font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--sage);margin-bottom:20px}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,5.5vw,2.8rem);color:#fff;line-height:1.12;margin-bottom:8px;letter-spacing:-.02em}
+.hero h2{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,5.5vw,2.8rem);color:var(--meadow);line-height:1.12;margin-bottom:24px;letter-spacing:-.02em;font-style:italic;font-weight:400}
+.hero-sub{font-size:clamp(.88rem,1.6vw,1rem);color:rgba(255,255,255,.4);font-weight:300;line-height:1.8;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--cream);color:var(--forest);padding:15px 32px;border-radius:100px;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:600;text-decoration:none;transition:all .4s}
+.btn-p:hover{background:#fff;transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.2)}
+.btn-s{display:inline-flex;align-items:center;gap:8px;background:transparent;color:rgba(255,255,255,.4);padding:15px 32px;border-radius:100px;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:400;text-decoration:none;border:1px solid rgba(255,255,255,.08);transition:all .4s}
+.btn-s:hover{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.7)}
+.hero-scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2}
+.hero-scroll span{display:block;width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,.2),transparent);animation:scrollP 2s ease infinite}
+@keyframes scrollP{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:.6;transform:scaleY(1.2)}}
+
+/* SECTIONS */
+.sec{padding:72px 24px}
+.sec-label{display:block;text-align:center;font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--sage);margin-bottom:10px}
+.sec-heading{font-family:'DM Serif Display',serif;font-size:clamp(1.3rem,3.5vw,1.7rem);text-align:center;color:var(--forest);margin-bottom:10px;line-height:1.2;letter-spacing:-.01em}
+.sec-sub{font-size:.88rem;color:var(--text-light);text-align:center;font-weight:300;line-height:1.7;max-width:480px;margin:0 auto}
+
+/* HOW IT WORKS */
+.how-sec{background:var(--cream)}
+.how-intro{font-size:.92rem;color:var(--text-light);text-align:center;font-weight:300;line-height:1.75;max-width:440px;margin:0 auto 12px}
+.how-detail{font-size:.85rem;color:var(--text-light);text-align:center;font-weight:300;line-height:1.75;max-width:440px;margin:0 auto}
+.receive-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;max-width:700px;margin:32px auto 0;background:rgba(0,0,0,.03);border-radius:16px;overflow:hidden}
+.receive-item{text-align:center;padding:28px 18px;background:var(--cream);transition:background .3s}
+.receive-item:hover{background:var(--warm-white)}
+.receive-icon{width:36px;height:36px;border-radius:50%;background:var(--forest);display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
+.receive-icon svg{width:16px;height:16px;stroke:var(--meadow);fill:none;stroke-width:1.8}
+.receive-item h4{font-size:.8rem;color:var(--forest);font-weight:600;margin-bottom:4px}
+.receive-item p{font-size:.7rem;color:var(--text-light);font-weight:300;line-height:1.45}
+.how-footer{text-align:center;margin-top:28px;font-size:.85rem;color:var(--text-light);font-weight:300;line-height:1.75}
+
+/* DELIVERS — two lanes */
+.delivers-sec{background:var(--warm-white)}
+.delivers-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:700px;margin:32px auto 0}
+.d-lane{background:var(--cream);border-radius:16px;padding:36px 28px;border:1px solid rgba(0,0,0,.04)}
+.d-lane-tag{font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+.d-nature .d-lane-tag{color:var(--moss)}
+.d-biz .d-lane-tag{color:var(--sea)}
+.d-lane h3{font-family:'DM Serif Display',serif;font-size:1.05rem;color:var(--forest);margin-bottom:14px;line-height:1.2}
+.d-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+.d-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:7px}
+.d-nature .d-dot{background:var(--moss)}
+.d-biz .d-dot{background:var(--sea)}
+.d-item p{font-size:.8rem;color:var(--text-light);font-weight:300;line-height:1.55}
+.d-footer{font-size:.8rem;color:var(--text-light);font-weight:400;margin-top:14px;line-height:1.5}
+.d-nature .d-footer{color:var(--moss)}
+.d-biz .d-footer{color:var(--sea)}
+
+/* WHY IT MATTERS */
+.why-sec{background:var(--forest);padding:72px 24px}
+.why-inner{max-width:520px;margin:0 auto;text-align:center}
+.why-sec .sec-label{color:var(--sage)}
+.why-sec .sec-heading{color:#fff;margin-bottom:16px}
+.why-p{font-size:.88rem;color:rgba(255,255,255,.4);font-weight:300;line-height:1.75;max-width:460px;margin:0 auto}
+.why-p+.why-p{margin-top:14px}
+.why-list{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;max-width:420px;margin:20px auto 0;text-align:left}
+.why-li{font-size:.8rem;color:rgba(255,255,255,.45);font-weight:300;padding-left:14px;position:relative;line-height:1.5}
+.why-li::before{content:'';position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--sage)}
+.why-footer{margin-top:24px;font-size:.88rem;color:rgba(255,255,255,.5);font-weight:300;line-height:1.7;max-width:460px;margin-left:auto;margin-right:auto}
+
+/* PARTNERS */
+.partner-sec{background:var(--cream)}
+.partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:620px;margin:28px auto 0}
+.p-card{background:var(--warm-white);border-radius:16px;overflow:hidden;border:1px solid rgba(0,0,0,.04);transition:all .4s}
+.p-card:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.04)}
+.p-card-img{height:110px;background-size:cover;background-position:center}
+.p-card-body{padding:18px 20px}
+.p-card-body h3{font-family:'DM Serif Display',serif;font-size:.9rem;color:var(--forest);margin-bottom:4px}
+.p-card-body p{font-size:.76rem;color:var(--text-light);font-weight:300;line-height:1.5;margin-bottom:6px}
+.p-card-body em{font-style:normal;font-size:.6rem;color:var(--sage);font-weight:400}
+
+/* PRICING */
+.pricing-sec{background:var(--warm-white)}
+.pricing-intro{font-size:.85rem;color:var(--text-light);text-align:center;font-weight:300;line-height:1.7;max-width:440px;margin:0 auto 8px}
+.pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:720px;margin:28px auto 0}
+.pc{background:var(--cream);border-radius:16px;padding:28px 20px;text-align:center;border:2px solid transparent;transition:all .4s;position:relative}
+.pc:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,.06)}
+.pc.feat{background:var(--forest)}
+.pop-b{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--forest);font-size:.52rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 12px;border-radius:100px;white-space:nowrap}
+.pc-name{font-weight:600;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.pc .pc-name{color:var(--sage)}
+.pc.feat .pc-name{color:var(--meadow)}
+.pc-amt{font-family:'DM Serif Display',serif;font-size:2rem;line-height:1}
+.pc .pc-amt{color:var(--forest)}
+.pc.feat .pc-amt{color:#fff}
+.pc-per{font-size:.72rem;margin-bottom:10px;font-weight:300}
+.pc .pc-per{color:var(--text-light)}
+.pc.feat .pc-per{color:rgba(255,255,255,.3)}
+.pc-desc{font-size:.72rem;line-height:1.5;font-weight:300}
+.pc .pc-desc{color:var(--text-light)}
+.pc.feat .pc-desc{color:rgba(255,255,255,.35)}
+
+/* FAQ */
+.faq-sec{background:var(--cream)}
+.faq-list{max-width:560px;margin:28px auto 0}
+.faq-item{border-bottom:1px solid rgba(0,0,0,.06);padding:20px 0}
+.faq-item:last-child{border-bottom:none}
+.faq-q{font-weight:600;font-size:.88rem;color:var(--forest);margin-bottom:6px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q::after{content:'+';font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--sage);transition:transform .3s}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{font-size:.82rem;color:var(--text-light);font-weight:300;line-height:1.65;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease}
+.faq-item.open .faq-a{max-height:200px;padding-top:4px}
+
+/* CTA */
+.cta-sec{background:var(--forest);padding:80px 24px}
+.cta-inner{max-width:460px;margin:0 auto;text-align:center}
+.cta-sec .sec-heading{color:#fff;margin-bottom:6px}
+.cta-sec .sec-sub{color:rgba(255,255,255,.38)}
+
+.ft{background:var(--forest);padding:24px 24px;text-align:center;border-top:1px solid rgba(255,255,255,.04)}
+.ft-row{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+.ft-badge{display:inline-flex;align-items:center;gap:5px;font-size:.65rem;font-weight:400;color:var(--sage)}
+.ft-badge svg{width:11px;height:11px;stroke:var(--sage);fill:none;stroke-width:2}
+.ft-brand{font-family:'DM Serif Display',serif;font-size:.85rem;color:var(--cream);margin-bottom:3px}
+.ft-text{font-size:.62rem;color:rgba(255,255,255,.15);font-weight:300}
+.ft a{color:var(--sage);text-decoration:none}
+
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.fade-up.vis{opacity:1;transform:translateY(0)}
+.fade-up-d1{transition-delay:.1s}
+.fade-up-d2{transition-delay:.2s}
+.fade-up-d3{transition-delay:.3s}
+
+@media(max-width:700px){
+.hero{min-height:90vh}
+.receive-grid{grid-template-columns:1fr 1fr}
+.delivers-grid{grid-template-columns:1fr}
+.partner-grid{grid-template-columns:1fr}
+.pricing-grid{grid-template-columns:1fr 1fr}
+.why-list{grid-template-columns:1fr}
+.hdr-nav{display:none}
+}
+@media(min-width:1024px){
+.sec{padding:80px 40px}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <a href="#" class="hdr-brand">Second <em>Nature</em> by Terevia</a>
+  <nav class="hdr-nav">
+    <a href="#how" class="hdr-link">How it works</a>
+    <a href="#partners" class="hdr-link">Partners</a>
+    <a href="#pricing" class="hdr-link">Pricing</a>
+    <a href="signup.html" class="hdr-cta">Start</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-label fade-up">Second Nature by Terevia</div>
+    <h1 class="fade-up">Built for business.</h1>
+    <h2 class="fade-up">Supporting UK conservation.</h2>
+    <p class="hero-sub fade-up fade-up-d1">A simple, zero-admin monthly programme supporting UK conservation — built to strengthen nature and your business.</p>
+    <div class="hero-btns fade-up fade-up-d2">
+      <a href="signup.html" class="btn-p">Start →</a>
+      <a href="#how" class="btn-s">How it works</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span></span></div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="sec how-sec" id="how">
+  <div class="sec-label">How it works</div>
+  <h2 class="sec-heading">Second Nature is a fixed monthly contribution programme.</h2>
+  <p class="how-intro">Your business contributes a set amount each month. Funding is directed to registered UK conservation charities.</p>
+  <p class="how-detail">You receive:</p>
+  <div class="receive-grid">
+    <div class="receive-item fade-up">
+      <div class="receive-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+      <h4>Named public page</h4>
+      <p>A branded page for your business</p>
+    </div>
+    <div class="receive-item fade-up fade-up-d1">
+      <div class="receive-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg></div>
+      <h4>Unique QR code</h4>
+      <p>Linked to your public page</p>
+    </div>
+    <div class="receive-item fade-up fade-up-d2">
+      <div class="receive-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+      <h4>Documentation</h4>
+      <p>Clear programme documentation</p>
+    </div>
+    <div class="receive-item fade-up fade-up-d3">
+      <div class="receive-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+      <h4>Display materials</h4>
+      <p>Digital and printed assets</p>
+    </div>
+  </div>
+  <div class="how-footer">No carbon claims. No operational burden. No sustainability department required.</div>
+</section>
+
+<!-- WHAT IT DELIVERS -->
+<section class="sec delivers-sec">
+  <div class="sec-label">What it delivers</div>
+  <h2 class="sec-heading">Two outcomes. One programme.</h2>
+  <div class="delivers-grid">
+    <div class="d-lane d-nature fade-up">
+      <div class="d-lane-tag">For nature</div>
+      <h3>Consistent funding for UK conservation work</h3>
+      <div class="d-item"><div class="d-dot"></div><p>Seagrass restoration along the UK coastline</p></div>
+      <div class="d-item"><div class="d-dot"></div><p>Marine habitat protection</p></div>
+      <div class="d-item"><div class="d-dot"></div><p>Wildflower habitats for pollinators</p></div>
+      <div class="d-item"><div class="d-dot"></div><p>Native woodland and peatland restoration</p></div>
+      <div class="d-footer">Real organisations. Registered charities. UK-based conservation.</div>
+    </div>
+    <div class="d-lane d-biz fade-up fade-up-d1">
+      <div class="d-lane-tag">For your business</div>
+      <h3>A clear structure you can point to</h3>
+      <div class="d-item"><div class="d-dot"></div><p>A named public page displaying your participation</p></div>
+      <div class="d-item"><div class="d-dot"></div><p>Visible active participant status</p></div>
+      <div class="d-item"><div class="d-dot"></div><p>Published conservation partners</p></div>
+      <div class="d-item"><div class="d-dot"></div><p>QR-linked visibility online and in print</p></div>
+      <div class="d-item"><div class="d-dot"></div><p>Language aligned with UK advertising guidance</p></div>
+      <div class="d-footer">Visible backing. Built to stand up to scrutiny.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY IT MATTERS -->
+<section class="why-sec">
+  <div class="why-inner">
+    <div class="sec-label">Why it matters</div>
+    <h2 class="sec-heading">The question is no longer if — it's how you show it.</h2>
+    <p class="why-p fade-up">Customers increasingly look at what businesses stand behind. Procurement teams increasingly ask for evidence in tenders and onboarding checks.</p>
+    <p class="why-p fade-up fade-up-d1">Environmental responsibility now appears in:</p>
+    <div class="why-list fade-up fade-up-d2">
+      <div class="why-li">Tender scoring frameworks</div>
+      <div class="why-li">Supplier onboarding reviews</div>
+      <div class="why-li">Procurement questionnaires</div>
+      <div class="why-li">Brand and reputation assessments</div>
+    </div>
+    <p class="why-footer fade-up fade-up-d3">Second Nature provides a simple, visible structure supporting registered UK conservation charities.</p>
+  </div>
+</section>
+
+<!-- CONSERVATION PARTNERS -->
+<section class="sec partner-sec" id="partners">
+  <div class="sec-label">Conservation partners</div>
+  <h2 class="sec-heading">The organisations doing the work.</h2>
+  <div class="partner-grid">
+    <div class="p-card fade-up">
+      <div class="p-card-img" style="background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgMzYwIj4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0ib2NlYW4iIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjNGE4YzljIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWE0YTVhIi8+PC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iNjAwIiBoZWlnaHQ9IjM2MCIgZmlsbD0idXJsKCNvY2VhbikiLz4KPCEtLSBsaWdodCByYXlzIHRocm91Z2ggd2F0ZXIgLS0+CjxnIG9wYWNpdHk9IjAuMDYiIGZpbGw9IiNmNWYwZTgiPgo8cG9seWdvbiBwb2ludHM9IjE4MCwwIDIyMCwzNjAgMTUwLDM2MCIvPgo8cG9seWdvbiBwb2ludHM9IjM1MCwwIDQwMCwzNjAgMzIwLDM2MCIvPgo8cG9seWdvbiBwb2ludHM9IjUwMCwwIDU0MCwzNjAgNDcwLDM2MCIvPgo8L2c+CjwhLS0gd2F0ZXIgcGFydGljbGVzIC0tPgo8ZyBvcGFjaXR5PSIwLjE1IiBmaWxsPSIjOGNjNWQ1Ij4KPGNpcmNsZSBjeD0iMTAwIiBjeT0iNjAiIHI9IjIiLz48Y2lyY2xlIGN4PSIyNTAiIGN5PSIxMDAiIHI9IjEuNSIvPjxjaXJjbGUgY3g9IjQwMCIgY3k9IjUwIiByPSIyIi8+CjxjaXJjbGUgY3g9IjUwMCIgY3k9IjEyMCIgcj0iMS41Ii8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iMTUwIiByPSIxLjgiLz48Y2lyY2xlIGN4PSIzNTAiIGN5PSIxODAiIHI9IjEuNSIvPgo8L2c+CjwhLS0gc2VhYmVkIC0tPgo8cGF0aCBkPSJNMCwzMDAgUTEwMCwyODUgMjAwLDI5NSBRMzAwLDMwNSA0MDAsMjkwIFE1MDAsMjgwIDYwMCwyOTUgTDYwMCwzNjAgTDAsMzYwWiIgZmlsbD0iIzFhM2EzYSIvPgo8IS0tIHNlYWdyYXNzIGJsYWRlcyAtLT4KPGcgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNyI+CjxwYXRoIGQ9Ik04MCwzNjAgUTc1LDMxMCA5MCwyNjAgUTEwMCwyMzAgOTUsMjAwIiBzdHJva2U9IiMzYThhNWEiLz4KPHBhdGggZD0iTTk1LDM2MCBRMTAwLDMyMCA4OCwyODAgUTgwLDI1MCA4NSwyMjAiIHN0cm9rZT0iIzRhOWE2YSIvPgo8cGF0aCBkPSJNMTEwLDM2MCBRMTA1LDMwMCAxMTUsMjUwIFExMjAsMjIwIDExMiwxOTAiIHN0cm9rZT0iIzNhOGE1YSIvPgo8cGF0aCBkPSJNMjAwLDM2MCBRMTk1LDMxNSAyMDUsMjcwIFEyMTIsMjQwIDIwOCwyMTAiIHN0cm9rZT0iIzRhOWE2YSIvPgo8cGF0aCBkPSJNMjE1LDM2MCBRMjIwLDMyNSAyMTAsMjg1IFEyMDUsMjU1IDIxMiwyMjUiIHN0cm9rZT0iIzNhOGE1YSIvPgo8cGF0aCBkPSJNMjMwLDM2MCBRMjI1LDMxMCAyMzUsMjYwIFEyNDAsMjMwIDIzMywyMDAiIHN0cm9rZT0iIzRhOWE2YSIvPgo8cGF0aCBkPSJNMzIwLDM2MCBRMzE1LDMyMCAzMjUsMjc1IFEzMzAsMjQ1IDMyMiwyMTUiIHN0cm9rZT0iIzNhOGE1YSIvPgo8cGF0aCBkPSJNMzM1LDM2MCBRMzQwLDMyNSAzMzAsMjgwIFEzMjUsMjUwIDMzMiwyMjAiIHN0cm9rZT0iIzRhOWE2YSIvPgo8cGF0aCBkPSJNMzUwLDM2MCBRMzQ1LDMwNSAzNTUsMjU1IFEzNjAsMjI1IDM1MiwxOTUiIHN0cm9rZT0iIzNhOGE1YSIvPgo8cGF0aCBkPSJNNDQwLDM2MCBRNDM1LDMxOCA0NDUsMjcwIFE0NTAsMjQwIDQ0MywyMTAiIHN0cm9rZT0iIzRhOWE2YSIvPgo8cGF0aCBkPSJNNDU1LDM2MCBRNDYwLDMyNSA0NTAsMjgwIFE0NDUsMjUyIDQ1MiwyMjIiIHN0cm9rZT0iIzNhOGE1YSIvPgo8cGF0aCBkPSJNNDcwLDM2MCBRNDY1LDMxMCA0NzUsMjYwIFE0ODAsMjMwIDQ3MiwyMDAiIHN0cm9rZT0iIzRhOWE2YSIvPgo8cGF0aCBkPSJNNTQwLDM2MCBRNTM1LDMyMCA1NDUsMjc1IFE1NTAsMjQ1IDU0MiwyMTUiIHN0cm9rZT0iIzNhOGE1YSIvPgo8cGF0aCBkPSJNNTU1LDM2MCBRNTYwLDMzMCA1NTAsMjkwIFE1NDUsMjYwIDU1MiwyMzAiIHN0cm9rZT0iIzRhOWE2YSIvPgo8L2c+CjwhLS0gZmlzaCBzaWxob3VldHRlcyAtLT4KPGcgZmlsbD0iIzJhNmE3YSIgb3BhY2l0eT0iMC4zIj4KPGVsbGlwc2UgY3g9IjE4MCIgY3k9IjE0MCIgcng9IjE4IiByeT0iOCIgdHJhbnNmb3JtPSJyb3RhdGUoLTUsMTgwLDE0MCkiLz4KPHBvbHlnb24gcG9pbnRzPSIxOTgsMTQwIDIxMCwxMzIgMjEwLDE0OCIgdHJhbnNmb3JtPSJyb3RhdGUoLTUsMTgwLDE0MCkiLz4KPGVsbGlwc2UgY3g9IjQyMCIgY3k9IjExMCIgcng9IjE0IiByeT0iNiIgdHJhbnNmb3JtPSJyb3RhdGUoOCw0MjAsMTEwKSIvPgo8cG9seWdvbiBwb2ludHM9IjQzNCwxMTAgNDQ0LDEwNCA0NDQsMTE2IiB0cmFuc2Zvcm09InJvdGF0ZSg4LDQyMCwxMTApIi8+CjxlbGxpcHNlIGN4PSIzMDAiIGN5PSIxNzAiIHJ4PSIxMiIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKC0zLDMwMCwxNzApIi8+Cjxwb2x5Z29uIHBvaW50cz0iMzEyLDE3MCAzMjAsMTY1IDMyMCwxNzUiIHRyYW5zZm9ybT0icm90YXRlKC0zLDMwMCwxNzApIi8+CjwvZz4KPCEtLSBidWJibGVzIC0tPgo8ZyBmaWxsPSJub25lIiBzdHJva2U9IiM4Y2M1ZDUiIHN0cm9rZS13aWR0aD0iMC44IiBvcGFjaXR5PSIwLjI1Ij4KPGNpcmNsZSBjeD0iMTMwIiBjeT0iMTgwIiByPSI0Ii8+PGNpcmNsZSBjeD0iMTM1IiBjeT0iMTY1IiByPSIyLjUiLz48Y2lyY2xlIGN4PSIxMjgiIGN5PSIxNTUiIHI9IjEuOCIvPgo8Y2lyY2xlIGN4PSIzODAiIGN5PSIxNjAiIHI9IjMuNSIvPjxjaXJjbGUgY3g9IjM3NSIgY3k9IjE0OCIgcj0iMiIvPjxjaXJjbGUgY3g9IjM4MiIgY3k9IjE0MCIgcj0iMS41Ii8+CjwvZz4KPC9zdmc+')"></div>
+      <div class="p-card-body">
+        <h3>Project Seagrass</h3>
+        <p>Restoring underwater meadows along the UK coastline.</p>
+        <em>projectseagrass.org</em>
+      </div>
+    </div>
+    <div class="p-card fade-up fade-up-d1">
+      <div class="p-card-img" style="background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgMzYwIj4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0ic2t5MiIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM3YWFlYjgiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM0YTdjOGMiLz48L2xpbmVhckdyYWRpZW50Pgo8bGluZWFyR3JhZGllbnQgaWQ9IndhdGVyIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzNhNmM3YyIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzVhOWNhYyIvPjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjc2t5MikiLz4KPCEtLSBkaXN0YW50IGhpbGxzIC0tPgo8ZWxsaXBzZSBjeD0iMzAwIiBjeT0iMTgwIiByeD0iNDAwIiByeT0iODAiIGZpbGw9IiMzZDZiNWEiIG9wYWNpdHk9IjAuNSIvPgo8ZWxsaXBzZSBjeD0iMTUwIiBjeT0iMjAwIiByeD0iMjUwIiByeT0iNjAiIGZpbGw9IiMzZDZiNWEiIG9wYWNpdHk9IjAuNiIvPgo8ZWxsaXBzZSBjeD0iNDgwIiBjeT0iMTk1IiByeD0iMjIwIiByeT0iNTUiIGZpbGw9IiMzNDZhNTgiIG9wYWNpdHk9IjAuNTUiLz4KPCEtLSByaXZlcmJhbmtzIC0tPgo8cGF0aCBkPSJNMCwyMjAgUTEwMCwyMDAgMjAwLDIzMCBRMzAwLDI2MCA0MDAsMjIwIFE1MDAsMTgwIDYwMCwyMTAgTDYwMCwzNjAgTDAsMzYwWiIgZmlsbD0iIzJkNWEzZiIvPgo8cGF0aCBkPSJNMCwyNjAgUTE1MCwyNDAgMjUwLDI3MCBRMzUwLDMwMCA0NTAsMjYwIFE1NTAsMjIwIDYwMCwyNTAgTDYwMCwzNjAgTDAsMzYwWiIgZmlsbD0iIzFhM2EyYSIvPgo8IS0tIHJpdmVyIC0tPgo8cGF0aCBkPSJNMCwyNDAgUTEwMCwyMjAgMTgwLDI0NSBRMjgwLDI3NSAzODAsMjQwIFE0ODAsMjAwIDYwMCwyMzAgTDYwMCwyNTAgUTUwMCwyMjAgNDAwLDI1MCBRMzAwLDI4MCAyMDAsMjU1IFExMDAsMjMwIDAsMjYwWiIgZmlsbD0idXJsKCN3YXRlcikiIG9wYWNpdHk9IjAuNyIvPgo8IS0tIHJpdmVyIHNoaW1tZXIgLS0+CjxnIHN0cm9rZT0iIzhhYzVkNSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBvcGFjaXR5PSIwLjMiPgo8cGF0aCBkPSJNMTAwLDIzOCBRMTIwLDIzNSAxNDAsMjQwIi8+CjxwYXRoIGQ9Ik0yODAsMjU4IFEzMDAsMjU1IDMyMCwyNjAiLz4KPHBhdGggZD0iTTQ0MCwyMjUgUTQ2MCwyMjIgNDgwLDIyOCIvPgo8L2c+CjwhLS0gdHJlZXMgb24gYmFua3MgLS0+CjxnIGZpbGw9IiMxYTNhMmEiIG9wYWNpdHk9IjAuNyI+CjxlbGxpcHNlIGN4PSI0MCIgY3k9IjIxMCIgcng9IjIyIiByeT0iNDAiLz4KPGVsbGlwc2UgY3g9IjgwIiBjeT0iMjE1IiByeD0iMTgiIHJ5PSIzMiIvPgo8ZWxsaXBzZSBjeD0iNTIwIiBjeT0iMTk1IiByeD0iMjQiIHJ5PSI0MiIvPgo8ZWxsaXBzZSBjeD0iNTYwIiBjeT0iMjAwIiByeD0iMTgiIHJ5PSIzNCIvPgo8L2c+CjwhLS0gYmlyZHMgLS0+CjxnIHN0cm9rZT0iI2Y1ZjBlOCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiIG9wYWNpdHk9IjAuNCI+CjxwYXRoIGQ9Ik0yMDAsMTAwIFEyMDUsOTUgMjEwLDEwMCBRMjE1LDk1IDIyMCwxMDAiLz4KPHBhdGggZD0iTTI1MCw4NSBRMjU0LDgxIDI1OCw4NSBRMjYyLDgxIDI2Niw4NSIvPgo8cGF0aCBkPSJNMTcwLDExMCBRMTczLDEwNyAxNzYsMTEwIFExNzksMTA3IDE4MiwxMTAiLz4KPC9nPgo8L3N2Zz4=')"></div>
+      <div class="p-card-body">
+        <h3>Ocean Conservation Trust</h3>
+        <p>Supporting marine habitat restoration and ocean conservation work across the UK.</p>
+        <em>oceanconservationtrust.org · Charity 1032491</em>
+      </div>
+    </div>
+    <div class="p-card fade-up fade-up-d2">
+      <div class="p-card-img" style="background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgMzYwIj4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0ic2t5IiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Q0Yzg3YSIgb3BhY2l0eT0iMC41Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjN2E5ZTdlIi8+PC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iNjAwIiBoZWlnaHQ9IjM2MCIgZmlsbD0idXJsKCNza3kpIi8+CjxlbGxpcHNlIGN4PSI0ODAiIGN5PSI3MCIgcng9IjUwIiByeT0iNTAiIGZpbGw9IiNmNWYwZTgiIG9wYWNpdHk9IjAuMTIiLz4KPCEtLSByb2xsaW5nIG1lYWRvdyAtLT4KPGVsbGlwc2UgY3g9IjMwMCIgY3k9IjI2MCIgcng9IjQwMCIgcnk9IjgwIiBmaWxsPSIjNWE4YTVlIiBvcGFjaXR5PSIwLjUiLz4KPGVsbGlwc2UgY3g9IjE1MCIgY3k9IjI4MCIgcng9IjMwMCIgcnk9IjYwIiBmaWxsPSIjNGE3YTRlIiBvcGFjaXR5PSIwLjYiLz4KPHJlY3QgeT0iMjcwIiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjkwIiBmaWxsPSIjM2Q2YjRmIi8+CjxyZWN0IHk9IjMwMCIgd2lkdGg9IjYwMCIgaGVpZ2h0PSI2MCIgZmlsbD0iIzJkNWEzZiIvPgo8IS0tIHdpbGRmbG93ZXJzIC0tPgo8ZyBvcGFjaXR5PSIwLjgiPgo8Y2lyY2xlIGN4PSI4MCIgY3k9IjI2NSIgcj0iNCIgZmlsbD0iI2U4Yzg0MCIvPjxjaXJjbGUgY3g9IjgwIiBjeT0iMjY1IiByPSIyIiBmaWxsPSIjYzhhODMwIi8+CjxjaXJjbGUgY3g9IjEyMCIgY3k9IjI3MCIgcj0iMy41IiBmaWxsPSIjZDRhMGMwIi8+PGNpcmNsZSBjeD0iMTIwIiBjeT0iMjcwIiByPSIxLjgiIGZpbGw9IiNiNDgwYTAiLz4KPGNpcmNsZSBjeD0iMTcwIiBjeT0iMjYyIiByPSI0LjUiIGZpbGw9IiNlOGM4NDAiLz48Y2lyY2xlIGN4PSIxNzAiIGN5PSIyNjIiIHI9IjIuMiIgZmlsbD0iI2M4YTgzMCIvPgo8Y2lyY2xlIGN4PSIyMjAiIGN5PSIyNjgiIHI9IjMiIGZpbGw9IiNlMGUwZmYiLz48Y2lyY2xlIGN4PSIyMjAiIGN5PSIyNjgiIHI9IjEuNSIgZmlsbD0iI2IwYjBkMCIvPgo8Y2lyY2xlIGN4PSIyNzAiIGN5PSIyNjAiIHI9IjQiIGZpbGw9IiNlOGM4NDAiLz48Y2lyY2xlIGN4PSIyNzAiIGN5PSIyNjAiIHI9IjIiIGZpbGw9IiNjOGE4MzAiLz4KPGNpcmNsZSBjeD0iMzEwIiBjeT0iMjY2IiByPSIzLjUiIGZpbGw9IiNkNGEwYzAiLz48Y2lyY2xlIGN4PSIzMTAiIGN5PSIyNjYiIHI9IjEuOCIgZmlsbD0iI2I0ODBhMCIvPgo8Y2lyY2xlIGN4PSIzNjAiIGN5PSIyNTgiIHI9IjQuNSIgZmlsbD0iI2U4Yzg0MCIvPjxjaXJjbGUgY3g9IjM2MCIgY3k9IjI1OCIgcj0iMi4yIiBmaWxsPSIjYzhhODMwIi8+CjxjaXJjbGUgY3g9IjQxMCIgY3k9IjI2NCIgcj0iMyIgZmlsbD0iI2UwZTBmZiIvPjxjaXJjbGUgY3g9IjQxMCIgY3k9IjI2NCIgcj0iMS41IiBmaWxsPSIjYjBiMGQwIi8+CjxjaXJjbGUgY3g9IjQ2MCIgY3k9IjI2MCIgcj0iNCIgZmlsbD0iI2U4Yzg0MCIvPjxjaXJjbGUgY3g9IjQ2MCIgY3k9IjI2MCIgcj0iMiIgZmlsbD0iI2M4YTgzMCIvPgo8Y2lyY2xlIGN4PSI1MTAiIGN5PSIyNjgiIHI9IjMuNSIgZmlsbD0iI2Q0YTBjMCIvPjxjaXJjbGUgY3g9IjUxMCIgY3k9IjI2OCIgcj0iMS44IiBmaWxsPSIjYjQ4MGEwIi8+CjxjaXJjbGUgY3g9IjU1MCIgY3k9IjI2MiIgcj0iNCIgZmlsbD0iI2U4Yzg0MCIvPjxjaXJjbGUgY3g9IjU1MCIgY3k9IjI2MiIgcj0iMiIgZmlsbD0iI2M4YTgzMCIvPgo8L2c+CjwhLS0gZmxvd2VyIHN0ZW1zIC0tPgo8ZyBzdHJva2U9IiM0YTdhNGUiIHN0cm9rZS13aWR0aD0iMS4yIiBmaWxsPSJub25lIiBvcGFjaXR5PSIwLjUiPgo8cGF0aCBkPSJNODAsMjY1IEw4MCwyOTAiLz48cGF0aCBkPSJNMTIwLDI3MCBMMTIwLDI5NSIvPjxwYXRoIGQ9Ik0xNzAsMjYyIEwxNzAsMjkwIi8+CjxwYXRoIGQ9Ik0yNzAsMjYwIEwyNzAsMjg4Ii8+PHBhdGggZD0iTTM2MCwyNTggTDM2MCwyODgiLz48cGF0aCBkPSJNNDYwLDI2MCBMNDYwLDI5MCIvPgo8cGF0aCBkPSJNNTEwLDI2OCBMNTEwLDI5NSIvPjxwYXRoIGQ9Ik01NTAsMjYyIEw1NTAsMjkwIi8+CjwvZz4KPCEtLSBiZWUgc2lsaG91ZXR0ZXMgLS0+CjxnIG9wYWNpdHk9IjAuNSI+CjxlbGxpcHNlIGN4PSIyMDAiIGN5PSIxODAiIHJ4PSI4IiByeT0iNSIgZmlsbD0iI2M4YTgzMCIvPgo8cmVjdCB4PSIxOTYiIHk9IjE3OCIgd2lkdGg9IjIiIGhlaWdodD0iNCIgcng9IjEiIGZpbGw9IiMyYTJhMjgiIG9wYWNpdHk9IjAuNCIvPgo8cmVjdCB4PSIyMDEiIHk9IjE3OCIgd2lkdGg9IjIiIGhlaWdodD0iNCIgcng9IjEiIGZpbGw9IiMyYTJhMjgiIG9wYWNpdHk9IjAuNCIvPgo8ZWxsaXBzZSBjeD0iMTk1IiBjeT0iMTc2IiByeD0iNSIgcnk9IjMiIGZpbGw9IiNmNWYwZTgiIG9wYWNpdHk9IjAuNCIgdHJhbnNmb3JtPSJyb3RhdGUoLTIwLDE5NSwxNzYpIi8+CjxlbGxpcHNlIGN4PSIyMDUiIGN5PSIxNzYiIHJ4PSI1IiByeT0iMyIgZmlsbD0iI2Y1ZjBlOCIgb3BhY2l0eT0iMC40IiB0cmFuc2Zvcm09InJvdGF0ZSgyMCwyMDUsMTc2KSIvPgoKPGVsbGlwc2UgY3g9IjQwMCIgY3k9IjE1MCIgcng9IjciIHJ5PSI0LjUiIGZpbGw9IiNjOGE4MzAiLz4KPHJlY3QgeD0iMzk2IiB5PSIxNDgiIHdpZHRoPSIyIiBoZWlnaHQ9IjMuNSIgcng9IjEiIGZpbGw9IiMyYTJhMjgiIG9wYWNpdHk9IjAuNCIvPgo8cmVjdCB4PSI0MDEiIHk9IjE0OCIgd2lkdGg9IjIiIGhlaWdodD0iMy41IiByeD0iMSIgZmlsbD0iIzJhMmEyOCIgb3BhY2l0eT0iMC40Ii8+CjxlbGxpcHNlIGN4PSIzOTUiIGN5PSIxNDYiIHJ4PSI0LjUiIHJ5PSIyLjgiIGZpbGw9IiNmNWYwZTgiIG9wYWNpdHk9IjAuNCIgdHJhbnNmb3JtPSJyb3RhdGUoLTIwLDM5NSwxNDYpIi8+CjxlbGxpcHNlIGN4PSI0MDUiIGN5PSIxNDYiIHJ4PSI0LjUiIHJ5PSIyLjgiIGZpbGw9IiNmNWYwZTgiIG9wYWNpdHk9IjAuNCIgdHJhbnNmb3JtPSJyb3RhdGUoMjAsNDA1LDE0NikiLz4KCjxlbGxpcHNlIGN4PSIzMjAiIGN5PSIyMDAiIHJ4PSI2IiByeT0iNCIgZmlsbD0iI2M4YTgzMCIvPgo8ZWxsaXBzZSBjeD0iMzE2IiBjeT0iMTk3IiByeD0iNCIgcnk9IjIuNSIgZmlsbD0iI2Y1ZjBlOCIgb3BhY2l0eT0iMC40IiB0cmFuc2Zvcm09InJvdGF0ZSgtMTUsMzE2LDE5NykiLz4KPGVsbGlwc2UgY3g9IjMyNCIgY3k9IjE5NyIgcng9IjQiIHJ5PSIyLjUiIGZpbGw9IiNmNWYwZTgiIG9wYWNpdHk9IjAuNCIgdHJhbnNmb3JtPSJyb3RhdGUoMTUsMzI0LDE5NykiLz4KPC9nPgo8IS0tIGRpc3RhbnQgdHJlZXMgLS0+CjxnIGZpbGw9IiMyZDVhM2YiIG9wYWNpdHk9IjAuNCI+CjxlbGxpcHNlIGN4PSI1MCIgY3k9IjI0MCIgcng9IjIwIiByeT0iMzUiLz4KPGVsbGlwc2UgY3g9IjU2MCIgY3k9IjIzNSIgcng9IjIyIiByeT0iMzgiLz4KPC9nPgo8L3N2Zz4=')"></div>
+      <div class="p-card-body">
+        <h3>Bumblebee Conservation Trust</h3>
+        <p>Reversing pollinator decline across the UK.</p>
+        <em>bumblebeeconservation.org · Charity 1115634</em>
+      </div>
+    </div>
+    <div class="p-card fade-up fade-up-d3">
+      <div class="p-card-img" style="background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgMzYwIj4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0ic2t5MSIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNhOGM1YTAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMyZDVhM2YiLz48L2xpbmVhckdyYWRpZW50Pgo8bGluZWFyR3JhZGllbnQgaWQ9Imdyb3VuZDEiIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMmQ1YTNmIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWEzYTJhIi8+PC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iNjAwIiBoZWlnaHQ9IjM2MCIgZmlsbD0idXJsKCNza3kxKSIvPgo8ZWxsaXBzZSBjeD0iMTIwIiBjeT0iODAiIHJ4PSI2MCIgcnk9IjYwIiBmaWxsPSIjZjVmMGU4IiBvcGFjaXR5PSIwLjEiLz4KPHJlY3QgeT0iMjIwIiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjE0MCIgZmlsbD0idXJsKCNncm91bmQxKSIvPgo8IS0tIHJvbGxpbmcgaGlsbHMgLS0+CjxlbGxpcHNlIGN4PSIxNTAiIGN5PSIyMzAiIHJ4PSIyMDAiIHJ5PSI2MCIgZmlsbD0iIzNkNmI0ZiIvPgo8ZWxsaXBzZSBjeD0iNDUwIiBjeT0iMjQwIiByeD0iMjUwIiByeT0iNTAiIGZpbGw9IiMzNDYwNDQiLz4KPGVsbGlwc2UgY3g9IjMwMCIgY3k9IjI1MCIgcng9IjM1MCIgcnk9IjQwIiBmaWxsPSIjMmQ1YTNmIi8+CjwhLS0gdHJlZXMgLS0+CjxnIGZpbGw9IiMxYTNhMmEiIG9wYWNpdHk9IjAuNiI+CjxlbGxpcHNlIGN4PSI4MCIgY3k9IjE4MCIgcng9IjI1IiByeT0iNDUiLz4KPGVsbGlwc2UgY3g9IjEzMCIgY3k9IjE5MCIgcng9IjIwIiByeT0iMzUiLz4KPGVsbGlwc2UgY3g9IjQ4MCIgY3k9IjE4NSIgcng9IjMwIiByeT0iNTAiLz4KPGVsbGlwc2UgY3g9IjUzMCIgY3k9IjE5NSIgcng9IjIyIiByeT0iMzgiLz4KPGVsbGlwc2UgY3g9IjU1MCIgY3k9IjIwMCIgcng9IjE4IiByeT0iMzAiLz4KPC9nPgo8IS0tIGRlZXIgc2lsaG91ZXR0ZSAtLT4KPGcgZmlsbD0iIzFhM2EyYSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjgwLDE1NSkgc2NhbGUoMC44KSI+CjxlbGxpcHNlIGN4PSIwIiBjeT0iMCIgcng9IjM1IiByeT0iMjIiLz4KPGVsbGlwc2UgY3g9Ii0yOCIgY3k9Ii0xNSIgcng9IjEyIiByeT0iMTAiLz4KPHJlY3QgeD0iLTE1IiB5PSIxNSIgd2lkdGg9IjUiIGhlaWdodD0iMzAiIHJ4PSIyIi8+CjxyZWN0IHg9IjUiIHk9IjE1IiB3aWR0aD0iNSIgaGVpZ2h0PSIzMCIgcng9IjIiLz4KPHJlY3QgeD0iLTI1IiB5PSIxNSIgd2lkdGg9IjUiIGhlaWdodD0iMjgiIHJ4PSIyIi8+CjxyZWN0IHg9IjE1IiB5PSIxNSIgd2lkdGg9IjUiIGhlaWdodD0iMjgiIHJ4PSIyIi8+CjwhLS0gYW50bGVycyAtLT4KPGxpbmUgeDE9Ii0zMiIgeTE9Ii0yMiIgeDI9Ii00MCIgeTI9Ii01MCIgc3Ryb2tlPSIjMWEzYTJhIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8bGluZSB4MT0iLTM4IiB5MT0iLTQwIiB4Mj0iLTUwIiB5Mj0iLTQ4IiBzdHJva2U9IiMxYTNhMmEiIHN0cm9rZS13aWR0aD0iMi41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPGxpbmUgeDE9Ii0zNSIgeTE9Ii0zNSIgeDI9Ii0yOCIgeTI9Ii00NSIgc3Ryb2tlPSIjMWEzYTJhIiBzdHJva2Utd2lkdGg9IjIuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxsaW5lIHgxPSItMjUiIHkxPSItMjIiIHgyPSItMTgiIHkyPSItNDgiIHN0cm9rZT0iIzFhM2EyYSIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPGxpbmUgeDE9Ii0yMCIgeTE9Ii0zOCIgeDI9Ii0xMCIgeTI9Ii00NCIgc3Ryb2tlPSIjMWEzYTJhIiBzdHJva2Utd2lkdGg9IjIuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjwvZz4KPCEtLSBncmFzcyB0dWZ0cyAtLT4KPGcgc3Ryb2tlPSIjNGE3YzVhIiBzdHJva2Utd2lkdGg9IjEuNSIgZmlsbD0ibm9uZSIgb3BhY2l0eT0iMC41Ij4KPHBhdGggZD0iTTUwLDI2MCBRNTUsMjQwIDUyLDI2MCIvPgo8cGF0aCBkPSJNMjAwLDI1NSBRMjA1LDIzNSAyMDIsMjU1Ii8+CjxwYXRoIGQ9Ik0zNTAsMjU4IFEzNTUsMjM4IDM1MiwyNTgiLz4KPHBhdGggZD0iTTUwMCwyNjAgUTUwNSwyNDAgNTAyLDI2MCIvPgo8L2c+CjwhLS0gZmlyZWZsaWVzL3BhcnRpY2xlcyAtLT4KPGNpcmNsZSBjeD0iMTgwIiBjeT0iMTcwIiByPSIyIiBmaWxsPSIjZjVmMGU4IiBvcGFjaXR5PSIwLjMiLz4KPGNpcmNsZSBjeD0iNDAwIiBjeT0iMTYwIiByPSIxLjUiIGZpbGw9IiNmNWYwZTgiIG9wYWNpdHk9IjAuMjUiLz4KPGNpcmNsZSBjeD0iMzIwIiBjeT0iMTMwIiByPSIxLjgiIGZpbGw9IiNmNWYwZTgiIG9wYWNpdHk9IjAuMiIvPgo8L3N2Zz4=')"></div>
+      <div class="p-card-body">
+        <h3>Make It Wild</h3>
+        <p>Planting native woodland and restoring peatland in the UK.</p>
+        <em>makeitwild.co.uk</em>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="sec pricing-sec" id="pricing">
+  <div class="sec-label">Pricing</div>
+  <h2 class="sec-heading">Fixed monthly programme. No hidden costs.</h2>
+  <p class="pricing-intro">Choose the tier that fits your business. Upgrade or adjust at any time.</p>
+  <div class="pricing-grid">
+    <div class="pc fade-up">
+      <div class="pc-name">Seedling</div>
+      <div class="pc-amt">£49</div>
+      <div class="pc-per">per month</div>
+      <div class="pc-desc">Named page, documentation and QR materials.</div>
+    </div>
+    <div class="pc feat fade-up fade-up-d1">
+      <div class="pop-b">Most common</div>
+      <div class="pc-name">Canopy</div>
+      <div class="pc-amt">£99</div>
+      <div class="pc-per">per month</div>
+      <div class="pc-desc">Physical proof kit and display materials.</div>
+    </div>
+    <div class="pc fade-up fade-up-d2">
+      <div class="pc-name">Watershed</div>
+      <div class="pc-amt">£199</div>
+      <div class="pc-per">per month</div>
+      <div class="pc-desc">Enhanced visibility and support.</div>
+    </div>
+    <div class="pc fade-up fade-up-d3">
+      <div class="pc-name">Ecosystem</div>
+      <div class="pc-amt">£389</div>
+      <div class="pc-per">per month</div>
+      <div class="pc-desc">Custom reporting and co-branded materials.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec faq-sec">
+  <div class="sec-label">Frequently asked questions</div>
+  <div class="faq-list">
+    <div class="faq-item open">
+      <div class="faq-q">Will this create work for us?</div>
+      <div class="faq-a">No. Second Nature is a fixed monthly programme with no carbon audit and no ongoing admin required from your team.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is this carbon offsetting?</div>
+      <div class="faq-a">No. Second Nature is not a carbon offset or credit scheme. We do not use carbon neutral or net zero claims.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What happens if participation stops?</div>
+      <div class="faq-a">If a business is no longer active, its public page reflects that status. Active participation is required for visibility within the programme.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is this a substitute for improving our operations?</div>
+      <div class="faq-a">No. Second Nature supports UK conservation alongside your operations. It does not replace operational improvements.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="cta-inner">
+    <h2 class="sec-heading fade-up">Ready to take part?</h2>
+    <p class="sec-sub fade-up fade-up-d1">Activate your business page and choose your tier.</p>
+    <div style="margin-top:24px" class="fade-up fade-up-d2">
+      <a href="signup.html" class="btn-p">Start →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ft">
+  <div class="ft-row">
+    <div class="ft-badge"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Aligned with UK advertising guidance</div>
+    <div class="ft-badge"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Contributions documented</div>
+  </div>
+  <div class="ft-brand">Second Nature by Terevia</div>
+  <div class="ft-text">Terevia Group Ltd · Registered in England · © 2026 · <a href="#">secondnature.uk</a></div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})
+},{threshold:0.15,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.parentElement;
+    const wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen)item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
